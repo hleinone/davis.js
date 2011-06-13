@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.5.0
+
+* Introduce Davis.location object which acts as an interface to any kind of routing mechanism.  Expects to be passed a delegate object which will do the actual routing work.  By default the delegate is the HTML5 pushState module Davis.history.
+* Renamed methods on Davis.history to match the interface set out by Davis.location.  `Davis.history.pushState` becomes `Davis.history.assign` & `Davis.history.replaceState` becomes `Davis.history.replace`.
+* Added `Davis.extend` method for adding library level extensions.
+* Added Davis.hashRouting extension allowing use of location.hash based routing.
+* Changed `Davis.App.prototype.configure` so that the settings object is yielded as the first argument to the config function.
+
+## 0.4.3
+
+* Merge [pull request](https://github.com/olivernn/davis.js/pull/4) fixes issues with IE's console functions/objects and IE's handling of lastIndex, thanks to [jbaudanza](https://github.com/jbaudanza).
+
+## 0.4.2
+
+* Fixed [bug](https://github.com/olivernn/davis.js/issues#issue/3) by introducing a utils module which uses native implementations of `Array.prototype.every`, `Array.prototype.forEach`, `Array.prototype.filter`, `Array.prototype.map` if they exist and if not falls back to a non native implementation.  This allows Davis.js to fail gracefully in IE.  Thanks to to [jbaudanza](https://github.com/jbaudanza) for reporting the issue.
+
 ## 0.4.1
 
 * If no route is found for the initial page load request don't stop the app
