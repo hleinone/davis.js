@@ -28,6 +28,7 @@
  */
 Davis.Request = function (raw) {
   var self = this;
+  this.raw = raw;
   this.params = {};
   this.title = raw.title;
   this.queryString = raw.fullPath.split("?")[1];
@@ -149,6 +150,21 @@ Davis.Request.prototype.location = function () {
 Davis.Request.prototype.toString = function () {
   return [this.method.toUpperCase(), this.path].join(" ")
 };
+
+/**
+ * ## request.asJSON
+ * Converts the request to a plain object which can be converted to a JSON string.  Used when
+ * pushing a request onto the history stack.
+ *
+ * @returns {Object} a plain object representation of the request.
+ */
+Davis.Request.prototype.asJSON = function () {
+  return {
+    title: this.raw.title,
+    fullPath: this.raw.fullPath,
+    method: this.raw.method
+  }
+}
 
 /**
  * ## Davis.Request.forPageLoad
